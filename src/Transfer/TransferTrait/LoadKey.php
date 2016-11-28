@@ -28,10 +28,6 @@ trait LoadKey
         $pubKey = $this->loadKey($keyPath);
         $resource = openssl_pkey_get_public($pubKey);
 
-        if (! $resource) {
-            throw \Exception('your pub key is not legal');
-        }
-
         return $resource;
     }
 
@@ -46,11 +42,6 @@ trait LoadKey
 
         $priKey = $this->loadKey($keyPath);
         $resource = openssl_pkey_get_private($priKey);
-        print_r($resource);
-
-        # if (! $resource) {
-        #     throw new \Exception('your pri key is not legal');
-        # }
 
         return $resource;
     }
