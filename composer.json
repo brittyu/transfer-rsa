@@ -1,0 +1,20 @@
+{
+    "name": "brittyu/transfer-rsa",
+    "description": "Encryption and Decryption Use RSA",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "brittyu",
+            "email": "yu.britt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.4.0"
+    },
+    "autoload": {
+      "psr-0": {
+        "Transfer": "src/"
+      }
+    }
+}
