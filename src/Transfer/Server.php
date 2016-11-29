@@ -1,10 +1,11 @@
 <?php
 namespace Transfer;
 
+use Transfer\TransferInterface;
 use Transfer\TransferTrait\LoadKey;
 use Transfer\TransferTrait\Validate;
 
-class Decrypt
+class Server implements TransferInterface
 {
     use LoadKey, Validate;
 
@@ -15,14 +16,27 @@ class Decrypt
         $this->config = $config;
     }
 
-    public function getPriKey()
+    private function getPriKey()
     {
         $priKey = $this->loadPriKey();
 
         return $priKey;
     }
 
-    public function doDecrypt($text)
+    public function encrypt($text)
+    {
+        $time = $_SERVER['REQUEST_TIME'];
+
+        $encryptString = 'spider=' . $time . '=' . $text;
+        openssl_private_encrypt($encryptString, $encrypted, $this->getPriKey());
+
+        $encrypted = base64_encode($encrypted);
+
+        return $encrypted;
+
+    }
+
+    public function decrypt($text)
     {
         openssl_private_decrypt(base64_decode($text), $decrypted, $this->getPriKey());
 
@@ -39,4 +53,3 @@ class Decrypt
         return $decrypted;
     }
 }
-
