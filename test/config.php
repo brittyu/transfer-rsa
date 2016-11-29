@@ -20,4 +20,6 @@ return [
     'generate_key_config' => [
         'private_key_bits' => 1024
     ],
+
+    'basePath' => __DIR__
 ];
